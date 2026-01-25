@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Frank+Ruhl+Libre:wght@400;700&family=Assistant:wght@400;500;600;700&display=swap");
+@import "./sprites.css";
 
 :root {
   --black-main: #0B0B0B;
