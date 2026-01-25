@@ -1,15 +1,18 @@
+/* themes/toby.css
+   Toby Theme — Light + Dark
+   Works with BOTH:
+   - <html class="dark"> (shadcn/ui default)
+   - <html data-theme="dark">
+*/
+
+/* Optional: typography */
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Frank+Ruhl+Libre:wght@400;700&family=Assistant:wght@400;500;600;700&display=swap");
 
 /* =========================================================
-   Toby Theme — Light + Dark
-   Uses shadcn/tailwind tokens: --background, --foreground, etc.
-   Toggle by setting on <html>: data-theme="dark" | "light"
-   NOTE: tokens are !important to prevent being overridden by local index.css
+   Brand constants (do not change per theme)
    ========================================================= */
-
-/* ---------- Base brand constants (shared) ---------- */
 :root {
-  /* Brand colors (HEX for assets/graphics usage) */
+  /* Toby brand palette (hex) */
   --black-main: #0b0b0b;
   --black-soft: #161616;
 
@@ -21,129 +24,137 @@
   --wine-mid: #b84028;
   --wine-light: #c04830;
 
+  /* Typography tokens */
+  --font-heading-en: "Playfair Display", serif;
+  --font-heading-he: "Frank Ruhl Libre", serif;
+  --font-body: "Assistant", sans-serif;
+
   /* Radius */
   --radius: 0.625rem; /* 10px */
-
-  /* Typography */
-  --font-headline-en: "Playfair Display", serif;
-  --font-headline-he: "Frank Ruhl Libre", serif;
-  --font-body: "Assistant", sans-serif;
 }
 
 /* =========================================================
-   LIGHT (default) — “Day Stage”
-   warm ivory, subtle gold tint, wine accents
+   LIGHT (default)
+   Targets: :root, data-theme="light", class="light"
    ========================================================= */
-:root {
+:root,
+:root[data-theme="light"],
+:root.light {
   color-scheme: light;
 
-  /* Core */
-  --background: 38 60% 97% !important;      /* warm ivory */
-  --foreground: 0 0% 7% !important;         /* near-black */
+  /* SHADCN/Tailwind tokens (HSL triplets) */
+  --background: 38 60% 97%;       /* warm ivory */
+  --foreground: 0 0% 6%;          /* near-black */
 
-  /* Surfaces */
-  --card: 36 35% 94% !important;            /* soft warm panel */
-  --card-foreground: 0 0% 7% !important;
+  --card: 36 45% 98%;
+  --card-foreground: 0 0% 6%;
 
-  --popover: 40 70% 98% !important;
-  --popover-foreground: 0 0% 7% !important;
+  --popover: 36 45% 98%;
+  --popover-foreground: 0 0% 6%;
 
-  /* Muted */
-  --muted: 34 22% 91% !important;
-  --muted-foreground: 0 0% 38% !important;
+  --muted: 35 25% 93%;
+  --muted-foreground: 0 0% 32%;
 
-  /* Borders / inputs */
-  --border: 0 0% 12% !important;            /* used as hsl(var(--border)) */
-  --input: 0 0% 16% !important;
-  --ring: 41 73% 63% !important;            /* gold */
+  --border: 0 0% 10% / 0.12;
+  --input: 0 0% 10% / 0.16;
+  --ring: 40 75% 55%;             /* gold-ish ring */
 
-  /* Brand */
-  --primary: 41 73% 63% !important;         /* gold */
-  --primary-foreground: 0 0% 7% !important;
+  /* Primary = Gold, Accent = Wine */
+  --primary: 40 75% 55%;          /* ≈ #e6b65c */
+  --primary-foreground: 0 0% 6%;
 
-  --accent: 6 68% 35% !important;           /* wine (clean & readable) */
-  --accent-foreground: 38 60% 97% !important;
+  --secondary: 35 30% 92%;
+  --secondary-foreground: 0 0% 10%;
 
-  --secondary: 34 18% 89% !important;       /* subtle stage panel */
-  --secondary-foreground: 0 0% 10% !important;
+  --accent: 6 70% 33%;            /* ≈ wine */
+  --accent-foreground: 0 0% 98%;
 
-  --destructive: 0 72% 52% !important;
-  --destructive-foreground: 0 0% 98% !important;
+  --destructive: 0 75% 55%;
+  --destructive-foreground: 0 0% 98%;
 
-  /* Optional charts */
-  --chart-1: 41 73% 63% !important;
-  --chart-2: 6 68% 35% !important;
-  --chart-3: 0 0% 7% !important;
-  --chart-4: 34 22% 91% !important;
-  --chart-5: 18 80% 55% !important;
+  /* Optional chart-ish tokens */
+  --chart-1: 40 75% 55%;
+  --chart-2: 6 70% 33%;
+  --chart-3: 18 55% 45%;
+  --chart-4: 0 0% 25%;
+  --chart-5: 35 30% 70%;
 
-  /* Legacy aliases */
-  --bg: hsl(var(--background)) !important;
-  --surface: hsl(var(--card)) !important;
-  --text: hsl(var(--foreground)) !important;
-  --muted-text: hsl(var(--muted-foreground)) !important;
-  --border-color: hsl(var(--border) / 0.14) !important;
+  /* Legacy/simple aliases (so old CSS still works) */
+  --bg: hsl(var(--background));
+  --surface: hsl(var(--card));
+  --text: hsl(var(--foreground));
+  --muted-text: hsl(var(--muted-foreground));
 
-  --primary-legacy: hsl(var(--primary)) !important;
-  --primary-contrast: hsl(var(--primary-foreground)) !important;
-  --accent-legacy: hsl(var(--accent)) !important;
-  --accent-contrast: hsl(var(--accent-foreground)) !important;
+  /* Toby-specific vibe */
+  --toby-stage-glow: radial-gradient(
+    1200px 600px at 50% 20%,
+    rgba(230, 182, 92, 0.22),
+    rgba(140, 29, 24, 0.08) 45%,
+    rgba(11, 11, 11, 0.00) 70%
+  );
 }
 
 /* =========================================================
-   DARK — “Night Stage”
-   true stage black, gold pops, wine brighter
+   DARK
+   Targets: data-theme="dark" OR class="dark" on html
    ========================================================= */
-:root[data-theme="dark"] {
+:root[data-theme="dark"],
+:root.dark,
+.dark :root {
   color-scheme: dark;
 
-  --background: 0 0% 5% !important;         /* stage black */
-  --foreground: 0 0% 96% !important;
+  --background: 0 0% 4%;          /* #0b0b0b-ish */
+  --foreground: 0 0% 96%;
 
-  --card: 0 0% 9% !important;
-  --card-foreground: 0 0% 96% !important;
+  --card: 0 0% 7%;
+  --card-foreground: 0 0% 96%;
 
-  --popover: 0 0% 8% !important;
-  --popover-foreground: 0 0% 96% !important;
+  --popover: 0 0% 7%;
+  --popover-foreground: 0 0% 96%;
 
-  --muted: 0 0% 12% !important;
-  --muted-foreground: 0 0% 75% !important;
+  --muted: 0 0% 10%;
+  --muted-foreground: 0 0% 70%;
 
-  --border: 0 0% 92% !important;
-  --input: 0 0% 92% !important;
-  --ring: 41 73% 63% !important;
+  --border: 0 0% 100% / 0.12;
+  --input: 0 0% 100% / 0.14;
+  --ring: 40 75% 55%;
 
-  --primary: 41 73% 63% !important;
-  --primary-foreground: 0 0% 7% !important;
+  --primary: 40 75% 55%;          /* gold pops on dark */
+  --primary-foreground: 0 0% 6%;
 
-  --accent: 8 72% 48% !important;           /* wine brighter */
-  --accent-foreground: 0 0% 7% !important;
+  --secondary: 0 0% 12%;
+  --secondary-foreground: 0 0% 96%;
 
-  --secondary: 0 0% 14% !important;
-  --secondary-foreground: 0 0% 96% !important;
+  --accent: 8 65% 44%;            /* wine brighter on dark */
+  --accent-foreground: 0 0% 6%;
 
-  --destructive: 0 72% 52% !important;
-  --destructive-foreground: 0 0% 98% !important;
+  --destructive: 0 70% 50%;
+  --destructive-foreground: 0 0% 98%;
 
-  --chart-1: 41 73% 63% !important;
-  --chart-2: 8 72% 48% !important;
-  --chart-3: 0 0% 96% !important;
-  --chart-4: 0 0% 14% !important;
-  --chart-5: 18 80% 55% !important;
+  --chart-1: 40 75% 55%;
+  --chart-2: 8 65% 44%;
+  --chart-3: 18 55% 55%;
+  --chart-4: 0 0% 80%;
+  --chart-5: 35 30% 60%;
 
-  --bg: hsl(var(--background)) !important;
-  --surface: hsl(var(--card)) !important;
-  --text: hsl(var(--foreground)) !important;
-  --muted-text: hsl(var(--muted-foreground)) !important;
-  --border-color: hsl(var(--border) / 0.14) !important;
+  /* Legacy/simple aliases */
+  --bg: hsl(var(--background));
+  --surface: hsl(var(--card));
+  --text: hsl(var(--foreground));
+  --muted-text: hsl(var(--muted-foreground));
 
-  --primary-legacy: hsl(var(--primary)) !important;
-  --primary-contrast: hsl(var(--primary-foreground)) !important;
-  --accent-legacy: hsl(var(--accent)) !important;
-  --accent-contrast: hsl(var(--accent-foreground)) !important;
+  /* Toby stage glow on dark */
+  --toby-stage-glow: radial-gradient(
+    900px 520px at 50% 18%,
+    rgba(230, 182, 92, 0.24),
+    rgba(192, 72, 48, 0.10) 48%,
+    rgba(11, 11, 11, 0.00) 70%
+  );
 }
 
-/* ---------- Optional: global typography defaults ---------- */
+/* =========================================================
+   Global minimal defaults (safe)
+   ========================================================= */
 html, body {
   font-family: var(--font-body);
 }
