@@ -1,4 +1,26 @@
 {
-  "themeCssUrl": "https://raw.githubusercontent.com/tobywsharotslicha/toby-brand-assets/main/themes/toby.css",
-  "version": "1.0.0"
+  "colors": {
+    "black": "#0B0B0B",
+    "blackSoft": "#161616",
+
+    "goldMain": "#E6B65C",
+    "goldDark": "#B48A3A",
+    "goldLight": "#F4D98A",
+
+    "wineMain": "#8C1D18",
+    "wineMid": "#B84028",
+    "wineLight": "#C04830"
+  },
+
+  "fonts": {
+    "headlineEN": "Playfair Display",
+    "headlineHE": "Frank Ruhl Libre",
+    "body": "Assistant"
+  },
+
+  "radius": {
+    "sm": "4px",
+    "md": "6px",
+    "lg": "10px"
+  }
 }
