@@ -1,17 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Frank+Ruhl+Libre:wght@400;700&family=Assistant:wght@400;500;600;700&display=swap");
-@import "./sprites.css";
 
+/* ברירת מחדל: Light */
 :root {
-  --black-main: #0B0B0B;
+  --black-main: #0b0b0b;
   --black-soft: #161616;
 
-  --gold-main: #E6B65C;
-  --gold-dark: #B48A3A;
-  --gold-light: #F4D98A;
+  --gold-main: #e6b65c;
+  --gold-dark: #b48a3a;
+  --gold-light: #f4d98a;
 
-  --wine-main: #8C1D18;
-  --wine-mid: #B84028;
-  --wine-light: #C04830;
+  --wine-main: #8c1d18;
+  --wine-mid: #b84028;
+  --wine-light: #c04830;
 
   --radius-sm: 4px;
   --radius-md: 6px;
@@ -20,4 +20,32 @@
   --font-headline-en: "Playfair Display", serif;
   --font-headline-he: "Frank Ruhl Libre", serif;
   --font-body: "Assistant", sans-serif;
+
+  /* טוקנים שימושיים לאפליקציה */
+  --bg: #ffffff;
+  --surface: #faf7f1;
+  --text: #0b0b0b;
+  --muted: #5b5b5b;
+  --border: rgba(11, 11, 11, 0.12);
+
+  --primary: var(--gold-main);
+  --primary-contrast: #0b0b0b;
+
+  --accent: var(--wine-main);
+  --accent-contrast: #ffffff;
+}
+
+/* Dark mode כששמים data-theme="dark" על html או body */
+:root[data-theme="dark"] {
+  --bg: #0b0b0b;
+  --surface: #121212;
+  --text: #f5f5f5;
+  --muted: #c6c6c6;
+  --border: rgba(245, 245, 245, 0.14);
+
+  --primary: var(--gold-main);
+  --primary-contrast: #0b0b0b;
+
+  --accent: var(--wine-mid);
+  --accent-contrast: #0b0b0b;
 }
