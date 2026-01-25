@@ -1,69 +1,33 @@
 /* themes/sprites.css */
 
-/* כל הספרייטים שלך הם 2048x1365.
-   אנחנו מציגים אותם מוקטן (512x341) כדי שהאייקונים יכנסו יפה ב-96x96. */
-:root {
-  --toby-sprite-w: 512px;
-  --toby-sprite-h: 341px;
-
-  /* גודל אייקון אחיד */
-  --toby-icon-size: 96px;
-}
-
 /* בסיס */
-.toby-icon {
+.brand-icon {
   display: inline-block;
-  width: var(--toby-icon-size);
-  height: var(--toby-icon-size);
+  width: var(--icon-size, 24px);
+  height: var(--icon-size, 24px);
+
+  background-image: var(--sprite-url);
   background-repeat: no-repeat;
-  background-size: var(--toby-sprite-w) var(--toby-sprite-h);
-  /* טיפ: אם תרצי “זוהר” קל מסביב */
-  filter: drop-shadow(0 2px 10px rgba(255, 170, 60, 0.18));
+
+  /* מחשבים tile לפי גודל התמונה/כמות עמודות-שורות */
+  --tile-w: calc(var(--sprite-w) / var(--cols));
+  --tile-h: calc(var(--sprite-h) / var(--rows));
+
+  /* SCALE: כמה "פיקסלים מקוריים" נכנסים בגודל האייקון */
+  /* אם את רוצה יותר חד: הגדילי icon-size, לא את המספרים פה */
+  background-size: calc(var(--sprite-w) * (var(--icon-size) / var(--tile-w)))
+                   calc(var(--sprite-h) * (var(--icon-size) / var(--tile-h)));
+
+  background-position:
+    calc(var(--col) * var(--icon-size) * -1)
+    calc(var(--row) * var(--icon-size) * -1);
+
+  /* נראה טוב יותר בהרבה UI */
+  flex: 0 0 auto;
 }
 
-/* -------- Sprite 01 (9 icons) -------- */
-.toby-icon--s1 { background-image: url("https://cdn.jsdelivr.net/gh/tobywsharotslicha/toby-brand-assets@main/brand/icons/sprite/sprite-01.png"); }
-
-.toby-icon--chevron-left  { background-position: -356px -33px; }
-.toby-icon--sheets        { background-position: -59px  -35px; }
-.toby-icon--chevron-right { background-position: -203px -43px; }
-
-.toby-icon--chat          { background-position: -363px -121px; }
-.toby-icon--phone         { background-position: -204px -121px; }
-.toby-icon--mail-music    { background-position: -58px  -122px; }
-
-.toby-icon--signature     { background-position: -353px -207px; }
-.toby-icon--video         { background-position: -208px -207px; }
-.toby-icon--music         { background-position: -63px  -213px; }
-
-/* -------- Sprite 02 (15 icons) -------- */
-.toby-icon--s2 { background-image: url("https://cdn.jsdelivr.net/gh/tobywsharotslicha/toby-brand-assets@main/brand/icons/sprite/sprite-02.png"); }
-
-.toby-icon--home     { background-position: -45px  -29px; }
-.toby-icon--lessons  { background-position: -294px -31px; }
-.toby-icon--tasks    { background-position: -120px -32px; }
-.toby-icon--profile  { background-position: -209px -36px; }
-.toby-icon--calendar { background-position: -373px -37px; }
-
-.toby-icon--settings { background-position: -211px -110px; }
-.toby-icon--location { background-position: -374px -113px; }
-.toby-icon--info     { background-position: -43px  -117px; }
-.toby-icon--lock     { background-position: -122px -118px; }
-.toby-icon--favorite { background-position: -292px -118px; }
-
-.toby-icon--view     { background-position: -124px -201px; }
-.toby-icon--help     { background-position: -295px -202px; }
-.toby-icon--tools    { background-position: -206px -203px; }
-.toby-icon--world    { background-position: -42px  -204px; }
-.toby-icon--cart     { background-position: -374px -204px; }
-
-/* -------- Sprite 03 (6 icons) -------- */
-.toby-icon--s3 { background-image: url("https://cdn.jsdelivr.net/gh/tobywsharotslicha/toby-brand-assets@main/brand/icons/sprite/sprite-03.png"); }
-
-.toby-icon--learn     { background-position: -367px -44px; }
-.toby-icon--orchestra { background-position: -51px  -55px; }
-.toby-icon--analysis  { background-position: -210px -57px; }
-
-.toby-icon--listen    { background-position: -207px -186px; }
-.toby-icon--mic       { background-position: -37px  -187px; }
-.toby-icon--piano     { background-position: -357px -190px; }
+/* גדלים נוחים */
+.brand-icon.sm { --icon-size: 20px; }
+.brand-icon.md { --icon-size: 24px; }
+.brand-icon.lg { --icon-size: 32px; }
+.brand-icon.xl { --icon-size: 44px; }
