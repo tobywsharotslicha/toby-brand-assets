@@ -1,18 +1,15 @@
-/* themes/toby.css
-   Toby Theme — Light + Dark
-   Works with BOTH:
-   - <html class="dark"> (shadcn/ui default)
-   - <html data-theme="dark">
-*/
-
-/* Optional: typography */
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Frank+Ruhl+Libre:wght@400;700&family=Assistant:wght@400;500;600;700&display=swap");
 
 /* =========================================================
-   Brand constants (do not change per theme)
+   Toby Theme (Light + Dark)
+   - Works with :root[data-theme="..."] AND html.dark
+   - Uses shadcn/tailwind tokens (HSL triplets) + legacy vars
+   - Adds !important on key tokens to beat later-injected CSS
    ========================================================= */
+
+/* ---------- Brand primitives ---------- */
 :root {
-  /* Toby brand palette (hex) */
+  /* brand colors */
   --black-main: #0b0b0b;
   --black-soft: #161616;
 
@@ -24,137 +21,149 @@
   --wine-mid: #b84028;
   --wine-light: #c04830;
 
-  /* Typography tokens */
-  --font-heading-en: "Playfair Display", serif;
-  --font-heading-he: "Frank Ruhl Libre", serif;
+  /* radii */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+
+  /* fonts */
+  --font-headline-en: "Playfair Display", serif;
+  --font-headline-he: "Frank Ruhl Libre", serif;
   --font-body: "Assistant", sans-serif;
 
-  /* Radius */
+  /* nice default */
   --radius: 0.625rem; /* 10px */
 }
 
 /* =========================================================
-   LIGHT (default)
-   Targets: :root, data-theme="light", class="light"
+   LIGHT (default) — “Day Stage”
+   warm ivory, clean blacks, wine accents, gold highlights
    ========================================================= */
 :root,
 :root[data-theme="light"],
-:root.light {
+:root.light,
+html[data-theme="light"],
+html.light {
   color-scheme: light;
 
-  /* SHADCN/Tailwind tokens (HSL triplets) */
-  --background: 38 60% 97%;       /* warm ivory */
-  --foreground: 0 0% 6%;          /* near-black */
+  /* ---- shadcn tokens (HSL triplets) ---- */
+  --background: 33 100% 96% !important;         /* warm ivory */
+  --foreground: 0 0% 6% !important;             /* near black */
 
-  --card: 36 45% 98%;
-  --card-foreground: 0 0% 6%;
+  --card: 33 45% 92% !important;
+  --card-foreground: 0 0% 7% !important;
 
-  --popover: 36 45% 98%;
-  --popover-foreground: 0 0% 6%;
+  --popover: 33 100% 97% !important;
+  --popover-foreground: 0 0% 7% !important;
 
-  --muted: 35 25% 93%;
-  --muted-foreground: 0 0% 32%;
+  --muted: 32 25% 90% !important;
+  --muted-foreground: 0 0% 35% !important;
 
-  --border: 0 0% 10% / 0.12;
-  --input: 0 0% 10% / 0.16;
-  --ring: 40 75% 55%;             /* gold-ish ring */
+  --border: 0 0% 12% / 0.12 !important;
+  --input: 0 0% 12% / 0.14 !important;
+  --ring: 39 75% 55% !important;                /* gold ring */
 
-  /* Primary = Gold, Accent = Wine */
-  --primary: 40 75% 55%;          /* ≈ #e6b65c */
-  --primary-foreground: 0 0% 6%;
+  /* primary = gold */
+  --primary: 39 75% 55% !important;
+  --primary-foreground: 0 0% 8% !important;
 
-  --secondary: 35 30% 92%;
-  --secondary-foreground: 0 0% 10%;
+  /* secondary = elegant warm gray */
+  --secondary: 33 25% 88% !important;
+  --secondary-foreground: 0 0% 10% !important;
 
-  --accent: 6 70% 33%;            /* ≈ wine */
-  --accent-foreground: 0 0% 98%;
+  /* accent = wine */
+  --accent: 6 70% 34% !important;
+  --accent-foreground: 0 0% 98% !important;
 
-  --destructive: 0 75% 55%;
-  --destructive-foreground: 0 0% 98%;
+  /* destructive */
+  --destructive: 0 80% 52% !important;
+  --destructive-foreground: 0 0% 98% !important;
 
-  /* Optional chart-ish tokens */
-  --chart-1: 40 75% 55%;
-  --chart-2: 6 70% 33%;
-  --chart-3: 18 55% 45%;
-  --chart-4: 0 0% 25%;
-  --chart-5: 35 30% 70%;
+  /* =======================================================
+     Legacy/simple tokens (some parts of UI use these)
+     ======================================================= */
+  --bg: #fff6ea;
+  --surface: #faf2e6;
+  --text: #0b0b0b;
+  --muted-text: #5b5b5b;
+  --border-hex: rgba(11, 11, 11, 0.12);
 
-  /* Legacy/simple aliases (so old CSS still works) */
-  --bg: hsl(var(--background));
-  --surface: hsl(var(--card));
-  --text: hsl(var(--foreground));
-  --muted-text: hsl(var(--muted-foreground));
+  --brand-gold: var(--gold-main);
+  --brand-wine: var(--wine-main);
 
-  /* Toby-specific vibe */
-  --toby-stage-glow: radial-gradient(
-    1200px 600px at 50% 20%,
-    rgba(230, 182, 92, 0.22),
-    rgba(140, 29, 24, 0.08) 45%,
-    rgba(11, 11, 11, 0.00) 70%
-  );
+  /* Helpful derived colors */
+  --toby-shadow: 0 18px 50px rgba(11, 11, 11, 0.12);
+  --toby-glow: 0 0 0 2px rgba(230, 182, 92, 0.22);
 }
 
 /* =========================================================
-   DARK
-   Targets: data-theme="dark" OR class="dark" on html
+   DARK — “Night Stage”
+   supports data-theme="dark" AND html.dark
    ========================================================= */
 :root[data-theme="dark"],
 :root.dark,
-.dark :root {
+html[data-theme="dark"],
+html.dark {
   color-scheme: dark;
 
-  --background: 0 0% 4%;          /* #0b0b0b-ish */
-  --foreground: 0 0% 96%;
+  /* ---- shadcn tokens (HSL triplets) ---- */
+  --background: 0 0% 5% !important;             /* stage black */
+  --foreground: 0 0% 96% !important;
 
-  --card: 0 0% 7%;
-  --card-foreground: 0 0% 96%;
+  --card: 0 0% 9% !important;
+  --card-foreground: 0 0% 96% !important;
 
-  --popover: 0 0% 7%;
-  --popover-foreground: 0 0% 96%;
+  --popover: 0 0% 8% !important;
+  --popover-foreground: 0 0% 96% !important;
 
-  --muted: 0 0% 10%;
-  --muted-foreground: 0 0% 70%;
+  --muted: 0 0% 12% !important;
+  --muted-foreground: 0 0% 70% !important;
 
-  --border: 0 0% 100% / 0.12;
-  --input: 0 0% 100% / 0.14;
-  --ring: 40 75% 55%;
+  --border: 0 0% 100% / 0.14 !important;
+  --input: 0 0% 100% / 0.16 !important;
+  --ring: 39 75% 55% !important;                /* gold ring */
 
-  --primary: 40 75% 55%;          /* gold pops on dark */
-  --primary-foreground: 0 0% 6%;
+  /* primary = gold (still pops on dark) */
+  --primary: 39 75% 55% !important;
+  --primary-foreground: 0 0% 8% !important;
 
-  --secondary: 0 0% 12%;
-  --secondary-foreground: 0 0% 96%;
+  /* secondary */
+  --secondary: 0 0% 12% !important;
+  --secondary-foreground: 0 0% 96% !important;
 
-  --accent: 8 65% 44%;            /* wine brighter on dark */
-  --accent-foreground: 0 0% 6%;
+  /* accent = wine (deeper in dark) */
+  --accent: 8 60% 40% !important;
+  --accent-foreground: 0 0% 98% !important;
 
-  --destructive: 0 70% 50%;
-  --destructive-foreground: 0 0% 98%;
+  /* destructive */
+  --destructive: 0 75% 56% !important;
+  --destructive-foreground: 0 0% 98% !important;
 
-  --chart-1: 40 75% 55%;
-  --chart-2: 8 65% 44%;
-  --chart-3: 18 55% 55%;
-  --chart-4: 0 0% 80%;
-  --chart-5: 35 30% 60%;
+  /* legacy/simple */
+  --bg: #0b0b0b;
+  --surface: #121212;
+  --text: #f5f5f5;
+  --muted-text: #c6c6c6;
+  --border-hex: rgba(245, 245, 245, 0.14);
 
-  /* Legacy/simple aliases */
-  --bg: hsl(var(--background));
-  --surface: hsl(var(--card));
-  --text: hsl(var(--foreground));
-  --muted-text: hsl(var(--muted-foreground));
+  --brand-gold: var(--gold-main);
+  --brand-wine: var(--wine-mid);
 
-  /* Toby stage glow on dark */
-  --toby-stage-glow: radial-gradient(
-    900px 520px at 50% 18%,
-    rgba(230, 182, 92, 0.24),
-    rgba(192, 72, 48, 0.10) 48%,
-    rgba(11, 11, 11, 0.00) 70%
-  );
+  --toby-shadow: 0 22px 70px rgba(0, 0, 0, 0.55);
+  --toby-glow: 0 0 0 2px rgba(230, 182, 92, 0.20);
 }
 
-/* =========================================================
-   Global minimal defaults (safe)
-   ========================================================= */
-html, body {
+/* ---------- Global typography hooks (optional) ---------- */
+html,
+body {
   font-family: var(--font-body);
+}
+
+/* Optional helpers you may use */
+.toby-surface {
+  background: hsl(var(--card));
+  color: hsl(var(--card-foreground));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius-lg);
+  box-shadow: var(--toby-shadow);
 }
