@@ -1,7 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Frank+Ruhl+Libre:wght@400;700&family=Assistant:wght@400;500;600;700&display=swap");
 
-/* ברירת מחדל: Light */
+/* =========================================================
+   Toby Brand Tokens
+   - Works with Tailwind/shadcn tokens (HSL triplets)
+   - Also keeps legacy tokens for convenience (--bg, --text, etc.)
+   - Dark mode via: :root[data-theme="dark"]
+   ========================================================= */
+
+/* ---------- Base brand colors (constant across themes) ---------- */
 :root {
+  /* Brand palette */
   --black-main: #0b0b0b;
   --black-soft: #161616;
 
@@ -13,15 +21,25 @@
   --wine-mid: #b84028;
   --wine-light: #c04830;
 
+  /* Radii */
   --radius-sm: 4px;
   --radius-md: 6px;
   --radius-lg: 10px;
 
+  /* Typography */
   --font-headline-en: "Playfair Display", serif;
   --font-headline-he: "Frank Ruhl Libre", serif;
   --font-body: "Assistant", sans-serif;
 
-  /* טוקנים שימושיים לאפליקציה */
+  /* shadcn radius token */
+  --radius: 0.625rem; /* 10px */
+}
+
+/* =========================================================
+   LIGHT THEME (default)
+   ========================================================= */
+:root {
+  /* Legacy/simple tokens */
   --bg: #ffffff;
   --surface: #faf7f1;
   --text: #0b0b0b;
@@ -33,19 +51,90 @@
 
   --accent: var(--wine-main);
   --accent-contrast: #ffffff;
+
+  /* ---------------------------------------------------------
+     shadcn/tailwind tokens (HSL triplets)
+     These are what bg-background / text-foreground etc use.
+     --------------------------------------------------------- */
+  --background: 0 0% 100%;
+  --foreground: 0 0% 4%;
+
+  --card: 40 47% 96%;
+  --card-foreground: 0 0% 4%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 4%;
+
+  --muted: 0 0% 96%;
+  --muted-foreground: 0 0% 36%;
+
+  /* Gold (primary) */
+  --primary: 39 73% 63%;
+  --primary-foreground: 0 0% 4%;
+
+  /* Wine (accent) */
+  --accent: 3 71% 32%;
+  --accent-foreground: 0 0% 100%;
+
+  --secondary: 40 47% 96%;
+  --secondary-foreground: 0 0% 4%;
+
+  --border: 0 0% 10%;
+  --input: 0 0% 10%;
+  --ring: 39 73% 63%;
+
+  /* Optional / if your UI uses them */
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
 }
 
-/* Dark mode כששמים data-theme="dark" על html או body */
+/* =========================================================
+   DARK THEME (data-theme="dark")
+   ========================================================= */
 :root[data-theme="dark"] {
+  /* Legacy/simple tokens */
   --bg: #0b0b0b;
   --surface: #121212;
   --text: #f5f5f5;
   --muted: #c6c6c6;
   --border: rgba(245, 245, 245, 0.14);
 
+  /* Keep brand identity: gold still primary */
   --primary: var(--gold-main);
   --primary-contrast: #0b0b0b;
 
+  /* Wine shifts slightly brighter on dark */
   --accent: var(--wine-mid);
   --accent-contrast: #0b0b0b;
+
+  /* shadcn/tailwind tokens (HSL triplets) */
+  --background: 0 0% 4%;
+  --foreground: 0 0% 96%;
+
+  --card: 0 0% 7%;
+  --card-foreground: 0 0% 96%;
+
+  --popover: 0 0% 7%;
+  --popover-foreground: 0 0% 96%;
+
+  --muted: 0 0% 12%;
+  --muted-foreground: 0 0% 78%;
+
+  /* Gold (primary) */
+  --primary: 39 73% 63%;
+  --primary-foreground: 0 0% 4%;
+
+  /* Wine (accent) */
+  --accent: 10 64% 44%;
+  --accent-foreground: 0 0% 4%;
+
+  --secondary: 0 0% 10%;
+  --secondary-foreground: 0 0% 96%;
+
+  --border: 0 0% 90%;
+  --input: 0 0% 90%;
+  --ring: 39 73% 63%;
+
+  --destructive: 0 62% 35%;
+  --destructive-foreground: 0 0% 96%;
 }
