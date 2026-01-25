@@ -1,64 +1,22 @@
-/* ===============================
-   TOBY MUSIC – Brand Theme
-   Loaded externally
-   =============================== */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Frank+Ruhl+Libre:wght@400;700&family=Assistant:wght@400;500;600;700&display=swap");
 
 :root {
-  /* Base */
-  --background: 0 0% 4%;
-  --foreground: 0 0% 98%;
+  --black-main: #0B0B0B;
+  --black-soft: #161616;
 
-  --card: 0 0% 9%;
-  --card-foreground: 0 0% 98%;
+  --gold-main: #E6B65C;
+  --gold-dark: #B48A3A;
+  --gold-light: #F4D98A;
 
-  --popover: 0 0% 9%;
-  --popover-foreground: 0 0% 98%;
+  --wine-main: #8C1D18;
+  --wine-mid: #B84028;
+  --wine-light: #C04830;
 
-  /* Gold */
-  --primary: 41 74% 63%;
-  --primary-foreground: 0 0% 10%;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
 
-  /* Wine */
-  --secondary: 3 71% 32%;
-  --secondary-foreground: 0 0% 98%;
-  --wine-light: 10 58% 47%;
-
-  /* UI */
-  --muted: 0 0% 14%;
-  --muted-foreground: 0 0% 65%;
-
-  --accent: 45 82% 75%;
-  --accent-foreground: 0 0% 10%;
-
-  --border: 0 0% 18%;
-  --input: 0 0% 18%;
-  --ring: 41 74% 63%;
-
-  --radius: 0.5rem;
-
-  /* Sidebar (חשוב – הקוד שלך משתמש בזה) */
-  --sidebar: 0 0% 6%;
-  --sidebar-foreground: 0 0% 96%;
-  --sidebar-border: 41 35% 25%;
-  --sidebar-accent: 0 0% 10%;
-  --sidebar-accent-foreground: 0 0% 96%;
-  --sidebar-ring: 41 74% 63%;
-}
-
-/* Light mode override */
-.light {
-  --background: 0 0% 100%;
-  --foreground: 0 0% 10%;
-
-  --card: 0 0% 100%;
-  --card-foreground: 0 0% 10%;
-
-  --border: 0 0% 86%;
-  --input: 0 0% 86%;
-
-  --sidebar: 0 0% 100%;
-  --sidebar-foreground: 0 0% 10%;
-  --sidebar-border: 0 0% 86%;
-  --sidebar-accent: 0 0% 95%;
-  --sidebar-accent-foreground: 0 0% 10%;
+  --font-headline-en: "Playfair Display", serif;
+  --font-headline-he: "Frank Ruhl Libre", serif;
+  --font-body: "Assistant", sans-serif;
 }
