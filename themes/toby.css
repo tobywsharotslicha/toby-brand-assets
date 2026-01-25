@@ -1,123 +1,148 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Frank+Ruhl+Libre:wght@400;700&family=Assistant:wght@400;500;600;700&display=swap");
+
 /* =========================================================
-   TOBY BRAND THEME
-   Source of truth for Light + Dark
-   Controlled via: <html data-theme="light|dark">
+   Toby Theme — Light + Dark
+   Uses shadcn/tailwind tokens: --background, --foreground, etc.
+   Also keeps legacy aliases: --bg, --text, --surface...
+   Toggle by setting: document.documentElement.dataset.theme = "dark" | "light"
    ========================================================= */
 
-/* -----------------------------
-   Base brand tokens (shared)
------------------------------ */
+/* ---------- Base brand constants (shared) ---------- */
 :root {
-  /* Brand core */
-  --gold-main: #c8a24a;
-  --gold-soft: #e7d7a3;
+  /* Brand colors (HEX for assets/graphics usage) */
+  --black-main: #0b0b0b;
+  --black-soft: #161616;
+
+  --gold-main: #e6b65c;
+  --gold-dark: #b48a3a;
+  --gold-light: #f4d98a;
 
   --wine-main: #8c1d18;
-  --wine-soft: #b84a45;
+  --wine-mid: #b84028;
+  --wine-light: #c04830;
 
   /* Radius */
+  --radius: 0.625rem; /* 10px */
   --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
 
   /* Typography */
-  --font-heading: "Playfair Display", "Frank Ruhl Libre", serif;
+  --font-headline-en: "Playfair Display", serif;
+  --font-headline-he: "Frank Ruhl Libre", serif;
   --font-body: "Assistant", sans-serif;
 }
 
-/* =========================================================
-   LIGHT THEME — Toby Day
-   Clean, warm, editorial
-========================================================= */
-:root[data-theme="light"] {
-  /* Surfaces */
-  --background: 0 0% 100%;
-  --foreground: 222 22% 12%;
+/* ---------- LIGHT (default) ---------- */
+:root {
+  color-scheme: light;
 
-  --card: 0 0% 100%;
-  --card-foreground: 222 22% 12%;
+  /* Shadcn/Tailwind tokens (HSL triplets) */
+  --background: 33 100% 96%;           /* warm ivory */
+  --foreground: 0 0% 6%;               /* near-black */
 
-  --surface: 45 30% 97%;
-  --muted: 220 12% 45%;
-  --border: 220 16% 85%;
+  --card: 33 45% 92%;
+  --card-foreground: 0 0% 6%;
 
-  /* Brand */
-  --primary: 42 52% 46%;          /* gold */
-  --primary-foreground: 0 0% 100%;
+  --popover: 33 100% 97%;
+  --popover-foreground: 0 0% 6%;
 
-  --accent: 6 55% 38%;            /* wine */
-  --accent-foreground: 0 0% 100%;
+  --muted: 32 25% 90%;
+  --muted-foreground: 0 0% 35%;
 
-  /* UI */
-  --ring: 42 52% 46%;
-  --shadow-soft: 0 10px 30px rgba(0,0,0,0.08);
+  --border: 0 0% 10% / 0.12;
+  --input: 0 0% 10% / 0.14;
+  --ring: 41 73% 63%;                  /* gold ring */
 
-  /* Legacy helpers */
-  --bg: #ffffff;
-  --text: #1e1f23;
-}
-
-/* =========================================================
-   DARK THEME — Toby Stage
-   Dramatic, wine & gold
-========================================================= */
-:root[data-theme="dark"] {
-  /* Surfaces */
-  --background: 0 0% 4%;
-  --foreground: 0 0% 96%;
-
-  --card: 0 0% 8%;
-  --card-foreground: 0 0% 96%;
-
-  --surface: 0 0% 10%;
-  --muted: 0 0% 65%;
-  --border: 0 0% 18%;
-
-  /* Brand */
-  --primary: 42 65% 55%;          /* gold brighter */
+  /* Primary = Gold */
+  --primary: 41 73% 63%;
   --primary-foreground: 0 0% 6%;
 
-  --accent: 6 60% 42%;            /* wine */
-  --accent-foreground: 0 0% 98%;
+  /* Accent = Wine */
+  --accent: 3 71% 32%;
+  --accent-foreground: 33 100% 96%;
 
-  /* UI */
-  --ring: 42 65% 55%;
-  --shadow-soft: 0 20px 60px rgba(0,0,0,0.6);
+  /* Secondary = soft stage panel */
+  --secondary: 32 20% 88%;
+  --secondary-foreground: 0 0% 10%;
 
-  /* Legacy helpers */
-  --bg: #0b0b0b;
-  --text: #f5f5f5;
+  --destructive: 0 72% 52%;
+  --destructive-foreground: 0 0% 98%;
+
+  /* Optional chart tokens (safe defaults) */
+  --chart-1: 41 73% 63%;
+  --chart-2: 3 71% 32%;
+  --chart-3: 0 0% 6%;
+  --chart-4: 32 25% 90%;
+  --chart-5: 18 80% 55%;
+
+  /* Legacy aliases (so old CSS/inline styles still work) */
+  --bg: hsl(var(--background));
+  --surface: hsl(var(--card));
+  --text: hsl(var(--foreground));
+  --muted-text: hsl(var(--muted-foreground));
+  --border-color: hsl(var(--border));
+
+  --primary-legacy: hsl(var(--primary));
+  --primary-contrast: hsl(var(--primary-foreground));
+  --accent-legacy: hsl(var(--accent));
+  --accent-contrast: hsl(var(--accent-foreground));
 }
 
-/* =========================================================
-   Global application of tokens
-========================================================= */
-html {
-  background-color: hsl(var(--background));
-  color: hsl(var(--foreground));
+/* ---------- DARK (data-theme="dark") ---------- */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --background: 0 0% 5%;               /* stage black */
+  --foreground: 0 0% 96%;              /* near-white */
+
+  --card: 0 0% 9%;
+  --card-foreground: 0 0% 96%;
+
+  --popover: 0 0% 8%;
+  --popover-foreground: 0 0% 96%;
+
+  --muted: 0 0% 12%;
+  --muted-foreground: 0 0% 75%;
+
+  --border: 0 0% 100% / 0.14;
+  --input: 0 0% 100% / 0.16;
+  --ring: 41 73% 63%;
+
+  /* Gold pops on dark */
+  --primary: 41 73% 63%;
+  --primary-foreground: 0 0% 6%;
+
+  /* Wine becomes brighter on dark for visibility */
+  --accent: 8 72% 45%;
+  --accent-foreground: 0 0% 6%;
+
+  --secondary: 0 0% 14%;
+  --secondary-foreground: 0 0% 95%;
+
+  --destructive: 0 72% 52%;
+  --destructive-foreground: 0 0% 98%;
+
+  --chart-1: 41 73% 63%;
+  --chart-2: 8 72% 45%;
+  --chart-3: 0 0% 96%;
+  --chart-4: 0 0% 14%;
+  --chart-5: 18 80% 55%;
+
+  /* Legacy aliases */
+  --bg: hsl(var(--background));
+  --surface: hsl(var(--card));
+  --text: hsl(var(--foreground));
+  --muted-text: hsl(var(--muted-foreground));
+  --border-color: hsl(var(--border));
+
+  --primary-legacy: hsl(var(--primary));
+  --primary-contrast: hsl(var(--primary-foreground));
+  --accent-legacy: hsl(var(--accent));
+  --accent-contrast: hsl(var(--accent-foreground));
+}
+
+/* ---------- Optional: global typography defaults ---------- */
+html, body {
   font-family: var(--font-body);
-}
-
-h1, h2, h3, h4 {
-  font-family: var(--font-heading);
-}
-
-/* Cards / sections */
-.toby-surface {
-  background: hsl(var(--card));
-  color: hsl(var(--card-foreground));
-  border: 1px solid hsl(var(--border));
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-soft);
-}
-
-/* Buttons */
-.btn-primary {
-  background: hsl(var(--primary));
-  color: hsl(var(--primary-foreground));
-}
-
-.btn-accent {
-  background: hsl(var(--accent));
-  color: hsl(var(--accent-foreground));
 }
