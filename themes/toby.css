@@ -1,15 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Frank+Ruhl+Libre:wght@400;700&family=Assistant:wght@400;500;600;700&display=swap");
 
-/* =========================================================
-   Toby Theme (Light + Dark)
-   - Works with :root[data-theme="..."] AND html.dark
-   - Uses shadcn/tailwind tokens (HSL triplets) + legacy vars
-   - Adds !important on key tokens to beat later-injected CSS
-   ========================================================= */
-
-/* ---------- Brand primitives ---------- */
+/* ==========================================================================
+   Toby Brand Tokens (shared)
+   ========================================================================== */
 :root {
-  /* brand colors */
+  /* Base brand colors */
   --black-main: #0b0b0b;
   --black-soft: #161616;
 
@@ -21,149 +16,126 @@
   --wine-mid: #b84028;
   --wine-light: #c04830;
 
-  /* radii */
   --radius-sm: 4px;
   --radius-md: 6px;
   --radius-lg: 10px;
 
-  /* fonts */
   --font-headline-en: "Playfair Display", serif;
   --font-headline-he: "Frank Ruhl Libre", serif;
   --font-body: "Assistant", sans-serif;
 
-  /* nice default */
-  --radius: 0.625rem; /* 10px */
+  /* Useful semantic (brand-level) */
+  --primary: var(--gold-main);
+  --primary-contrast: #0b0b0b;
+
+  --accent: var(--wine-mid);
+  --accent-contrast: #ffffff;
 }
 
-/* =========================================================
-   LIGHT (default) — “Day Stage”
-   warm ivory, clean blacks, wine accents, gold highlights
-   ========================================================= */
+/* ==========================================================================
+   LIGHT THEME (Toby “Day Stage”)
+   Applies when:
+   - :root (default)
+   - html.light / :root.light
+   - [data-theme="light"]
+   ========================================================================== */
 :root,
-:root[data-theme="light"],
+html.light,
 :root.light,
-html[data-theme="light"],
-html.light {
+:root[data-theme="light"],
+html[data-theme="light"] {
+  /* simple tokens */
+  --bg: #fff9f2;           /* warm ivory */
+  --surface: #fff1e3;      /* soft stage-light */
+  --surface-2: #ffe8d1;    /* slightly deeper */
+  --text: #1a0b0b;         /* wine-black */
+  --muted: #6b5b55;
+  --border: rgba(26, 11, 11, 0.14);
+
+  /* shadcn/tailwind HSL tokens */
+  --background: 33 100% 97%;
+  --foreground: 12 41% 8%;
+
+  --card: 33 100% 98%;
+  --card-foreground: 12 41% 8%;
+
+  --popover: 33 100% 98%;
+  --popover-foreground: 12 41% 8%;
+
+  --primary: 39 74% 63%; /* gold-main-ish */
+  --primary-foreground: 12 41% 8%;
+
+  --secondary: 20 55% 92%;
+  --secondary-foreground: 12 41% 12%;
+
+  --muted: 24 22% 88%;
+  --muted-foreground: 18 16% 42%;
+
+  --accent: 10 62% 44%; /* wine-mid */
+  --accent-foreground: 0 0% 100%;
+
+  --destructive: 0 72% 52%;
+  --destructive-foreground: 0 0% 100%;
+
+  --border: 12 25% 85%;
+  --input: 12 25% 85%;
+  --ring: 39 74% 63%;
+
   color-scheme: light;
-
-  /* ---- shadcn tokens (HSL triplets) ---- */
-  --background: 33 100% 96% !important;         /* warm ivory */
-  --foreground: 0 0% 6% !important;             /* near black */
-
-  --card: 33 45% 92% !important;
-  --card-foreground: 0 0% 7% !important;
-
-  --popover: 33 100% 97% !important;
-  --popover-foreground: 0 0% 7% !important;
-
-  --muted: 32 25% 90% !important;
-  --muted-foreground: 0 0% 35% !important;
-
-  --border: 0 0% 12% / 0.12 !important;
-  --input: 0 0% 12% / 0.14 !important;
-  --ring: 39 75% 55% !important;                /* gold ring */
-
-  /* primary = gold */
-  --primary: 39 75% 55% !important;
-  --primary-foreground: 0 0% 8% !important;
-
-  /* secondary = elegant warm gray */
-  --secondary: 33 25% 88% !important;
-  --secondary-foreground: 0 0% 10% !important;
-
-  /* accent = wine */
-  --accent: 6 70% 34% !important;
-  --accent-foreground: 0 0% 98% !important;
-
-  /* destructive */
-  --destructive: 0 80% 52% !important;
-  --destructive-foreground: 0 0% 98% !important;
-
-  /* =======================================================
-     Legacy/simple tokens (some parts of UI use these)
-     ======================================================= */
-  --bg: #fff6ea;
-  --surface: #faf2e6;
-  --text: #0b0b0b;
-  --muted-text: #5b5b5b;
-  --border-hex: rgba(11, 11, 11, 0.12);
-
-  --brand-gold: var(--gold-main);
-  --brand-wine: var(--wine-main);
-
-  /* Helpful derived colors */
-  --toby-shadow: 0 18px 50px rgba(11, 11, 11, 0.12);
-  --toby-glow: 0 0 0 2px rgba(230, 182, 92, 0.22);
 }
 
-/* =========================================================
-   DARK — “Night Stage”
-   supports data-theme="dark" AND html.dark
-   ========================================================= */
-:root[data-theme="dark"],
+/* ==========================================================================
+   DARK THEME (Toby “Night Stage”)
+   Applies when:
+   - html.dark / :root.dark
+   - [data-theme="dark"]
+   ========================================================================== */
+html.dark,
 :root.dark,
-html[data-theme="dark"],
-html.dark {
-  color-scheme: dark;
-
-  /* ---- shadcn tokens (HSL triplets) ---- */
-  --background: 0 0% 5% !important;             /* stage black */
-  --foreground: 0 0% 96% !important;
-
-  --card: 0 0% 9% !important;
-  --card-foreground: 0 0% 96% !important;
-
-  --popover: 0 0% 8% !important;
-  --popover-foreground: 0 0% 96% !important;
-
-  --muted: 0 0% 12% !important;
-  --muted-foreground: 0 0% 70% !important;
-
-  --border: 0 0% 100% / 0.14 !important;
-  --input: 0 0% 100% / 0.16 !important;
-  --ring: 39 75% 55% !important;                /* gold ring */
-
-  /* primary = gold (still pops on dark) */
-  --primary: 39 75% 55% !important;
-  --primary-foreground: 0 0% 8% !important;
-
-  /* secondary */
-  --secondary: 0 0% 12% !important;
-  --secondary-foreground: 0 0% 96% !important;
-
-  /* accent = wine (deeper in dark) */
-  --accent: 8 60% 40% !important;
-  --accent-foreground: 0 0% 98% !important;
-
-  /* destructive */
-  --destructive: 0 75% 56% !important;
-  --destructive-foreground: 0 0% 98% !important;
-
-  /* legacy/simple */
+:root[data-theme="dark"],
+html[data-theme="dark"] {
+  /* simple tokens */
   --bg: #0b0b0b;
   --surface: #121212;
+  --surface-2: #181818;
   --text: #f5f5f5;
-  --muted-text: #c6c6c6;
-  --border-hex: rgba(245, 245, 245, 0.14);
+  --muted: #c6c6c6;
+  --border: rgba(245, 245, 245, 0.14);
 
-  --brand-gold: var(--gold-main);
-  --brand-wine: var(--wine-mid);
+  /* shadcn/tailwind HSL tokens */
+  --background: 0 0% 4%;
+  --foreground: 0 0% 96%;
 
-  --toby-shadow: 0 22px 70px rgba(0, 0, 0, 0.55);
-  --toby-glow: 0 0 0 2px rgba(230, 182, 92, 0.20);
+  --card: 0 0% 7%;
+  --card-foreground: 0 0% 96%;
+
+  --popover: 0 0% 7%;
+  --popover-foreground: 0 0% 96%;
+
+  --primary: 39 74% 63%;
+  --primary-foreground: 0 0% 4%;
+
+  --secondary: 0 0% 12%;
+  --secondary-foreground: 0 0% 96%;
+
+  --muted: 0 0% 16%;
+  --muted-foreground: 0 0% 78%;
+
+  --accent: 12 54% 44%;
+  --accent-foreground: 0 0% 96%;
+
+  --destructive: 0 72% 52%;
+  --destructive-foreground: 0 0% 100%;
+
+  --border: 0 0% 20%;
+  --input: 0 0% 20%;
+  --ring: 39 74% 63%;
+
+  color-scheme: dark;
 }
 
-/* ---------- Global typography hooks (optional) ---------- */
+/* Optional global typography defaults */
 html,
 body {
   font-family: var(--font-body);
-}
-
-/* Optional helpers you may use */
-.toby-surface {
-  background: hsl(var(--card));
-  color: hsl(var(--card-foreground));
-  border: 1px solid hsl(var(--border));
-  border-radius: var(--radius-lg);
-  box-shadow: var(--toby-shadow);
 }
