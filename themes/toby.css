@@ -1,11 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Frank+Ruhl+Libre:wght@400;700&family=Assistant:wght@400;500;600;700&display=swap");
+/* =========================================================
+   Toby Brand Theme (Light + Dark)
+   Works with:
+   - html[data-theme="light|dark"]
+   - :root[data-theme="light|dark"]
+   - html.dark (tailwind/shadcn)
+========================================================= */
 
-/* ==========================================================================
-   Toby Brand Tokens (shared)
-   ========================================================================== */
+/* -------------------------
+   Brand base tokens
+------------------------- */
 :root {
-  /* Base brand colors */
-  --black-main: #0b0b0b;
+  --black: #0b0b0b;
   --black-soft: #161616;
 
   --gold-main: #e6b65c;
@@ -16,126 +21,123 @@
   --wine-mid: #b84028;
   --wine-light: #c04830;
 
+  /* Radius */
   --radius-sm: 4px;
   --radius-md: 6px;
   --radius-lg: 10px;
 
+  /* Fonts */
   --font-headline-en: "Playfair Display", serif;
   --font-headline-he: "Frank Ruhl Libre", serif;
   --font-body: "Assistant", sans-serif;
 
-  /* Useful semantic (brand-level) */
+  /* Optional: allow components to reference brand */
   --primary: var(--gold-main);
   --primary-contrast: #0b0b0b;
-
-  --accent: var(--wine-mid);
+  --accent: var(--wine-main);
   --accent-contrast: #ffffff;
 }
 
-/* ==========================================================================
+/* =========================================================
    LIGHT THEME (Toby “Day Stage”)
-   Applies when:
-   - :root (default)
-   - html.light / :root.light
-   - [data-theme="light"]
-   ========================================================================== */
+   Creamy ivory background + warm gold accents + readable text
+========================================================= */
 :root,
-html.light,
-:root.light,
 :root[data-theme="light"],
 html[data-theme="light"] {
-  /* simple tokens */
-  --bg: #fff9f2;           /* warm ivory */
-  --surface: #fff1e3;      /* soft stage-light */
-  --surface-2: #ffe8d1;    /* slightly deeper */
-  --text: #1a0b0b;         /* wine-black */
-  --muted: #6b5b55;
-  --border: rgba(26, 11, 11, 0.14);
+  color-scheme: light;
+
+  /* Basic page */
+  --bg: #fbf7ef;          /* ivory */
+  --surface: #ffffff;     /* cards */
+  --text: #141210;        /* near-black */
+  --muted: #5f5a55;       /* warm gray */
+  --border: rgba(20, 18, 16, 0.12);
 
   /* shadcn/tailwind HSL tokens */
-  --background: 33 100% 97%;
-  --foreground: 12 41% 8%;
+  --background: 45 60% 96%;
+  --foreground: 18 18% 8%;
 
-  --card: 33 100% 98%;
-  --card-foreground: 12 41% 8%;
+  --card: 0 0% 100%;
+  --card-foreground: 18 18% 8%;
 
-  --popover: 33 100% 98%;
-  --popover-foreground: 12 41% 8%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 18 18% 8%;
 
-  --primary: 39 74% 63%; /* gold-main-ish */
-  --primary-foreground: 12 41% 8%;
+  --primary: 39 76% 63%; /* gold */
+  --primary-foreground: 18 18% 8%;
 
-  --secondary: 20 55% 92%;
-  --secondary-foreground: 12 41% 12%;
+  --secondary: 45 35% 92%;
+  --secondary-foreground: 18 18% 10%;
 
-  --muted: 24 22% 88%;
-  --muted-foreground: 18 16% 42%;
+  --muted: 45 20% 90%;
+  --muted-foreground: 28 8% 38%;
 
-  --accent: 10 62% 44%; /* wine-mid */
+  --accent: 6 70% 33%; /* wine */
   --accent-foreground: 0 0% 100%;
 
   --destructive: 0 72% 52%;
   --destructive-foreground: 0 0% 100%;
 
-  --border: 12 25% 85%;
-  --input: 12 25% 85%;
-  --ring: 39 74% 63%;
+  --border: 18 18% 12% / 0.14;
+  --input: 18 18% 12% / 0.16;
+  --ring: 39 76% 63%;
 
-  color-scheme: light;
+  /* Extra tokens (nice to have) */
+  --shadow-soft: 0 10px 30px rgba(20, 18, 16, 0.10);
+  --glow-gold: 0 0 0 1px rgba(230, 182, 92, 0.25), 0 10px 40px rgba(230, 182, 92, 0.14);
 }
 
-/* ==========================================================================
+/* =========================================================
    DARK THEME (Toby “Night Stage”)
-   Applies when:
-   - html.dark / :root.dark
-   - [data-theme="dark"]
-   ========================================================================== */
-html.dark,
-:root.dark,
+   Deep black + wine + gold highlights
+========================================================= */
 :root[data-theme="dark"],
-html[data-theme="dark"] {
-  /* simple tokens */
-  --bg: #0b0b0b;
-  --surface: #121212;
-  --surface-2: #181818;
-  --text: #f5f5f5;
-  --muted: #c6c6c6;
-  --border: rgba(245, 245, 245, 0.14);
+html[data-theme="dark"],
+html.dark {
+  color-scheme: dark;
 
-  /* shadcn/tailwind HSL tokens */
+  --bg: #0b0b0b;
+  --surface: #111111;
+  --text: #f2f0ea;
+  --muted: #b7b0a6;
+  --border: rgba(244, 217, 138, 0.14);
+
   --background: 0 0% 4%;
-  --foreground: 0 0% 96%;
+  --foreground: 45 30% 92%;
 
   --card: 0 0% 7%;
-  --card-foreground: 0 0% 96%;
+  --card-foreground: 45 30% 92%;
 
   --popover: 0 0% 7%;
-  --popover-foreground: 0 0% 96%;
+  --popover-foreground: 45 30% 92%;
 
-  --primary: 39 74% 63%;
-  --primary-foreground: 0 0% 4%;
+  --primary: 39 76% 63%; /* gold */
+  --primary-foreground: 0 0% 6%;
 
-  --secondary: 0 0% 12%;
-  --secondary-foreground: 0 0% 96%;
+  --secondary: 0 0% 10%;
+  --secondary-foreground: 45 30% 92%;
 
-  --muted: 0 0% 16%;
-  --muted-foreground: 0 0% 78%;
+  --muted: 0 0% 12%;
+  --muted-foreground: 40 12% 72%;
 
-  --accent: 12 54% 44%;
-  --accent-foreground: 0 0% 96%;
+  --accent: 6 70% 40%; /* wine brighter on dark */
+  --accent-foreground: 0 0% 100%;
 
-  --destructive: 0 72% 52%;
+  --destructive: 0 72% 56%;
   --destructive-foreground: 0 0% 100%;
 
-  --border: 0 0% 20%;
-  --input: 0 0% 20%;
-  --ring: 39 74% 63%;
+  --border: 45 30% 92% / 0.10;
+  --input: 45 30% 92% / 0.12;
+  --ring: 39 76% 63%;
 
-  color-scheme: dark;
+  --shadow-soft: 0 14px 60px rgba(0, 0, 0, 0.55);
+  --glow-gold: 0 0 0 1px rgba(230, 182, 92, 0.18), 0 12px 60px rgba(230, 182, 92, 0.10);
 }
 
-/* Optional global typography defaults */
-html,
-body {
+/* -------------------------
+   Optional global typography defaults
+------------------------- */
+html, body {
   font-family: var(--font-body);
 }
