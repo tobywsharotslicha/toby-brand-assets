@@ -8,18 +8,39 @@
 
 /* -------------------------
    Brand base tokens
+   + Hebrew color aliases (API for designers)
 ------------------------- */
 :root {
-  --black: #0b0b0b;
-  --black-soft: #161616;
+  /* =================================================
+     Hebrew Brand Color API (use in consuming sites)
+     ================================================= */
+  --זהב: #e6b65c;
+  --זהב-כהה: #b48a3a;
+  --זהב-בהיר: #f4d98a;
 
-  --gold-main: #e6b65c;
-  --gold-dark: #b48a3a;
-  --gold-light: #f4d98a;
+  --בורדו: #8c1d18;
+  --בורדו-ביניים: #b84028;
+  --בורדו-בהיר: #c04830;
 
-  --wine-main: #8c1d18;
-  --wine-mid: #b84028;
-  --wine-light: #c04830;
+  --שחור: #0b0b0b;
+  --שחור-רך: #161616;
+
+  --לבן: #ffffff;
+  --אייבורי: #f2f0ea;
+
+  /* =================================================
+     Existing brand tokens (backward compatible)
+     ================================================= */
+  --black: var(--שחור);
+  --black-soft: var(--שחור-רך);
+
+  --gold-main: var(--זהב);
+  --gold-dark: var(--זהב-כהה);
+  --gold-light: var(--זהב-בהיר);
+
+  --wine-main: var(--בורדו);
+  --wine-mid: var(--בורדו-ביניים);
+  --wine-light: var(--בורדו-בהיר);
 
   /* Radius */
   --radius-sm: 4px;
@@ -33,7 +54,7 @@
 
   /* Optional: allow components to reference brand */
   --primary: var(--gold-main);
-  --primary-contrast: #0b0b0b;
+  --primary-contrast: var(--black);
   --accent: var(--wine-main);
   --accent-contrast: #ffffff;
 }
@@ -47,7 +68,7 @@
 html[data-theme="light"] {
   color-scheme: light;
 
-  /* Basic page */
+  /* Basic page (non-HSL helpers) */
   --bg: #fbf7ef;          /* ivory */
   --surface: #ffffff;     /* cards */
   --text: #141210;        /* near-black */
@@ -83,9 +104,19 @@ html[data-theme="light"] {
   --input: 18 18% 12% / 0.16;
   --ring: 39 76% 63%;
 
-  /* Extra tokens (nice to have) */
+  /* Extra tokens */
   --shadow-soft: 0 10px 30px rgba(20, 18, 16, 0.10);
   --glow-gold: 0 0 0 1px rgba(230, 182, 92, 0.25), 0 10px 40px rgba(230, 182, 92, 0.14);
+
+  /* -------------------------------------------------
+     (Optional) Hebrew semantic aliases for designers
+     These are convenient, not required
+     ------------------------------------------------- */
+  --רקע: var(--bg);
+  --כרטיס: var(--surface);
+  --טקסט: var(--text);
+  --הדגשה-זהב: var(--זהב);
+  --הדגשה-בורדו: var(--בורדו);
 }
 
 /* =========================================================
@@ -133,6 +164,13 @@ html.dark {
 
   --shadow-soft: 0 14px 60px rgba(0, 0, 0, 0.55);
   --glow-gold: 0 0 0 1px rgba(230, 182, 92, 0.18), 0 12px 60px rgba(230, 182, 92, 0.10);
+
+  /* Hebrew semantic aliases */
+  --רקע: var(--bg);
+  --כרטיס: var(--surface);
+  --טקסט: var(--text);
+  --הדגשה-זהב: var(--זהב);
+  --הדגשה-בורדו: var(--בורדו-בהיר);
 }
 
 /* -------------------------
