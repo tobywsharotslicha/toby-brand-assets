@@ -57,6 +57,19 @@
   --primary-contrast: var(--black);
   --accent: var(--wine-main);
   --accent-contrast: #ffffff;
+
+  /* =================================================
+     Default brand ASSETS (paths match your repo)
+     ================================================= */
+  --toby-bg-image: url("../brand/images/background/lightgold.png");
+  --toby-hero-image: url("../brand/images/hero/pianoflute.png");
+  --toby-logo-image: url("../brand/images/logo/logonoreka.png");
+
+  /* Extra semantic tokens for your “default rules” */
+  --toby-title: 350 70% 28%;     /* light: bordeaux */
+  --toby-subtitle: 39 76% 63%;   /* light: gold */
+  --toby-text: 0 0% 10%;         /* light: near black */
+  --toby-frame: 39 76% 63%;      /* gold frame */
 }
 
 /* =========================================================
@@ -109,14 +122,22 @@ html[data-theme="light"] {
   --glow-gold: 0 0 0 1px rgba(230, 182, 92, 0.25), 0 10px 40px rgba(230, 182, 92, 0.14);
 
   /* -------------------------------------------------
-     (Optional) Hebrew semantic aliases for designers
-     These are convenient, not required
+     Hebrew semantic aliases for designers
      ------------------------------------------------- */
   --רקע: var(--bg);
   --כרטיס: var(--surface);
   --טקסט: var(--text);
   --הדגשה-זהב: var(--זהב);
   --הדגשה-בורדו: var(--בורדו);
+
+  /* -------------------------------------------------
+     Your requested defaults (Light)
+     ------------------------------------------------- */
+  --toby-bg-image: url("../brand/images/background/lightgold.png");
+  --toby-title: 350 70% 28%;     /* bordeaux glitter title */
+  --toby-subtitle: 39 76% 63%;   /* gold glitter subtitle */
+  --toby-text: 0 0% 10%;         /* black text */
+  --toby-frame: 39 76% 63%;      /* gold frame */
 }
 
 /* =========================================================
@@ -171,6 +192,15 @@ html.dark {
   --טקסט: var(--text);
   --הדגשה-זהב: var(--זהב);
   --הדגשה-בורדו: var(--בורדו-בהיר);
+
+  /* -------------------------------------------------
+     Your requested defaults (Dark)
+     ------------------------------------------------- */
+  --toby-bg-image: url("../brand/images/background/red.png");
+  --toby-title: 39 76% 63%;      /* gold glitter title */
+  --toby-subtitle: 350 55% 48%;  /* bright bordeaux glitter subtitle */
+  --toby-text: 0 0% 98%;         /* white text */
+  --toby-frame: 39 76% 63%;      /* gold frame */
 }
 
 /* -------------------------
@@ -178,4 +208,67 @@ html.dark {
 ------------------------- */
 html, body {
   font-family: var(--font-body);
+}
+
+/* =========================================================
+   Global default background images
+========================================================= */
+html, body {
+  min-height: 100%;
+}
+
+body {
+  background-color: hsl(var(--background));
+  background-image: var(--toby-bg-image);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* =========================================================
+   Glitter utilities (titles / frames)
+========================================================= */
+
+/* Title glitter */
+.toby-title-glitter {
+  color: hsl(var(--toby-title));
+  text-shadow:
+    0 0 14px hsl(var(--toby-title) / 0.25),
+    0 0 34px hsl(var(--toby-title) / 0.16);
+}
+
+/* Subtitle glitter */
+.toby-subtitle-glitter {
+  color: hsl(var(--toby-subtitle));
+  text-shadow:
+    0 0 12px hsl(var(--toby-subtitle) / 0.22),
+    0 0 28px hsl(var(--toby-subtitle) / 0.14);
+}
+
+/* Regular text helper */
+.toby-text {
+  color: hsl(var(--toby-text));
+}
+
+/* Gold glitter frame */
+.toby-frame-glitter {
+  border: 1px solid hsl(var(--toby-frame) / 0.78);
+  box-shadow:
+    0 0 0 1px hsl(var(--toby-frame) / 0.18),
+    0 0 22px hsl(var(--toby-frame) / 0.12);
+}
+
+/* Filled components surface */
+.toby-surface {
+  background: hsl(var(--card) / 0.86);
+  backdrop-filter: blur(6px);
+}
+
+/* =========================================================
+   Hero / top dashboard background (piano+flute)
+========================================================= */
+.toby-hero {
+  background-image: url("../brand/images/hero/pianoflute.png");
+  background-size: cover;
+  background-position: center;
 }
