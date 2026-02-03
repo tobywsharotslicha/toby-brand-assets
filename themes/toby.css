@@ -63,7 +63,7 @@
      ================================================= */
   --toby-bg-image: url("../brand/images/background/lightgold.png");
   --toby-hero-image: url("../brand/images/hero/pianoflute.png");
-  --toby-logo-image: url("../brand/images/logo/logonoreka.png");
+  --toby-logo-image: url("../brand/logo/logonoreka.png"); /* ✅ נתיב נכון */
 
   /* Extra semantic tokens for your “default rules” */
   --toby-title: 350 70% 28%;     /* light: bordeaux */
@@ -119,20 +119,17 @@ html[data-theme="light"] {
 
   /* Extra tokens */
   --shadow-soft: 0 10px 30px rgba(20, 18, 16, 0.10);
-  --glow-gold: 0 0 0 1px rgba(230, 182, 92, 0.25), 0 10px 40px rgba(230, 182, 92, 0.14);
+  --glow-gold: 0 0 0 1px rgba(230, 182, 92, 0.25),
+               0 10px 40px rgba(230, 182, 92, 0.14);
 
-  /* -------------------------------------------------
-     Hebrew semantic aliases for designers
-     ------------------------------------------------- */
+  /* Hebrew semantic aliases for designers */
   --רקע: var(--bg);
   --כרטיס: var(--surface);
   --טקסט: var(--text);
   --הדגשה-זהב: var(--זהב);
   --הדגשה-בורדו: var(--בורדו);
 
-  /* -------------------------------------------------
-     Your requested defaults (Light)
-     ------------------------------------------------- */
+  /* Your requested defaults (Light) */
   --toby-bg-image: url("../brand/images/background/lightgold.png");
   --toby-title: 350 70% 28%;     /* bordeaux glitter title */
   --toby-subtitle: 39 76% 63%;   /* gold glitter subtitle */
@@ -184,7 +181,8 @@ html.dark {
   --ring: 39 76% 63%;
 
   --shadow-soft: 0 14px 60px rgba(0, 0, 0, 0.55);
-  --glow-gold: 0 0 0 1px rgba(230, 182, 92, 0.18), 0 12px 60px rgba(230, 182, 92, 0.10);
+  --glow-gold: 0 0 0 1px rgba(230, 182, 92, 0.18),
+               0 12px 60px rgba(230, 182, 92, 0.10);
 
   /* Hebrew semantic aliases */
   --רקע: var(--bg);
@@ -193,9 +191,7 @@ html.dark {
   --הדגשה-זהב: var(--זהב);
   --הדגשה-בורדו: var(--בורדו-בהיר);
 
-  /* -------------------------------------------------
-     Your requested defaults (Dark)
-     ------------------------------------------------- */
+  /* Your requested defaults (Dark) */
   --toby-bg-image: url("../brand/images/background/red.png");
   --toby-title: 39 76% 63%;      /* gold glitter title */
   --toby-subtitle: 350 55% 48%;  /* bright bordeaux glitter subtitle */
@@ -268,117 +264,7 @@ body {
    Hero / top dashboard background (piano+flute)
 ========================================================= */
 .toby-hero {
-  background-image: url("../brand/images/hero/pianoflute.png");
+  background-image: var(--toby-hero-image);
   background-size: cover;
   background-position: center;
 }
-/* =========================================================
-   TOBY – Light / Dark Implementation Layer
-   (Non-destructive, overrides only)
-========================================================= */
-
-/* ---------- Shared effects ---------- */
-:root {
-  --gold-glow-text: 0 0 6px rgba(230, 182, 92, 0.45);
-  --gold-glow-border: 0 0 0 1px rgba(230, 182, 92, 0.6),
-                      0 0 14px rgba(230, 182, 92, 0.35);
-
-  --wine-glow-text: 0 0 6px rgba(192, 72, 48, 0.45);
-}
-
-/* =========================================================
-   LIGHT THEME
-========================================================= */
-:root[data-theme="light"],
-html[data-theme="light"] {
-
-  /* Page background */
-  body {
-    background-image: url("https://cdn.jsdelivr.net/gh/tobywsharotslicha/toby-brand-assets@stable/brand/images/background/lightgold.png");
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
-    color: var(--שחור);
-  }
-
-  /* Logo (transparent) */
-  .brand-logo img {
-    content: url("https://cdn.jsdelivr.net/gh/tobywsharotslicha/toby-brand-assets@stable/brand/logo/logonoreka.png");
-  }
-
-  /* Headline */
-  h1, h2, .headline {
-    color: var(--בורדו);
-    text-shadow: var(--wine-glow-text);
-  }
-
-  /* Sub headline */
-  h3, .sub-headline {
-    color: var(--זהב);
-    text-shadow: var(--gold-glow-text);
-  }
-
-  /* Cards / components */
-  .card, .panel, .box {
-    background: rgba(255, 255, 255, 0.92);
-    border-radius: var(--radius-lg);
-    border: 1px solid rgba(230, 182, 92, 0.45);
-    box-shadow: var(--gold-glow-border);
-  }
-
-  /* Hero / dashboard top */
-  .dashboard-hero, .page-hero {
-    background-image: url("https://cdn.jsdelivr.net/gh/tobywsharotslicha/toby-brand-assets@stable/brand/images/hero/pianoflute.png");
-    background-size: cover;
-    background-position: center;
-  }
-}
-
-/* =========================================================
-   DARK THEME
-========================================================= */
-:root[data-theme="dark"],
-html[data-theme="dark"],
-html.dark {
-
-  body {
-    background-image: url("https://cdn.jsdelivr.net/gh/tobywsharotslicha/toby-brand-assets@stable/brand/images/background/red.png");
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
-    color: var(--לבן);
-  }
-
-  /* Logo */
-  .brand-logo img {
-    content: url("https://cdn.jsdelivr.net/gh/tobywsharotslicha/toby-brand-assets@stable/brand/logo/logonoreka.png");
-  }
-
-  /* Headline */
-  h1, h2, .headline {
-    color: var(--זהב);
-    text-shadow: var(--gold-glow-text);
-  }
-
-  /* Sub headline */
-  h3, .sub-headline {
-    color: var(--בורדו-בהיר);
-    text-shadow: var(--wine-glow-text);
-  }
-
-  /* Cards / components */
-  .card, .panel, .box {
-    background: rgba(15, 10, 10, 0.88);
-    border-radius: var(--radius-lg);
-    border: 1px solid rgba(230, 182, 92, 0.5);
-    box-shadow: var(--gold-glow-border);
-  }
-
-  /* Hero / dashboard top */
-  .dashboard-hero, .page-hero {
-    background-image: url("https://cdn.jsdelivr.net/gh/tobywsharotslicha/toby-brand-assets@stable/brand/images/hero/pianoflute.png");
-    background-size: cover;
-    background-position: center;
-  }
-}
-
