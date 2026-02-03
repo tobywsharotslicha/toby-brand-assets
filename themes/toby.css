@@ -272,3 +272,113 @@ body {
   background-size: cover;
   background-position: center;
 }
+/* =========================================================
+   TOBY – Light / Dark Implementation Layer
+   (Non-destructive, overrides only)
+========================================================= */
+
+/* ---------- Shared effects ---------- */
+:root {
+  --gold-glow-text: 0 0 6px rgba(230, 182, 92, 0.45);
+  --gold-glow-border: 0 0 0 1px rgba(230, 182, 92, 0.6),
+                      0 0 14px rgba(230, 182, 92, 0.35);
+
+  --wine-glow-text: 0 0 6px rgba(192, 72, 48, 0.45);
+}
+
+/* =========================================================
+   LIGHT THEME
+========================================================= */
+:root[data-theme="light"],
+html[data-theme="light"] {
+
+  /* Page background */
+  body {
+    background-image: url("https://cdn.jsdelivr.net/gh/tobywsharotslicha/toby-brand-assets@stable/brand/images/background/lightgold.png");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    color: var(--שחור);
+  }
+
+  /* Logo (transparent) */
+  .brand-logo img {
+    content: url("https://cdn.jsdelivr.net/gh/tobywsharotslicha/toby-brand-assets@stable/brand/logo/logonoreka.png");
+  }
+
+  /* Headline */
+  h1, h2, .headline {
+    color: var(--בורדו);
+    text-shadow: var(--wine-glow-text);
+  }
+
+  /* Sub headline */
+  h3, .sub-headline {
+    color: var(--זהב);
+    text-shadow: var(--gold-glow-text);
+  }
+
+  /* Cards / components */
+  .card, .panel, .box {
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(230, 182, 92, 0.45);
+    box-shadow: var(--gold-glow-border);
+  }
+
+  /* Hero / dashboard top */
+  .dashboard-hero, .page-hero {
+    background-image: url("https://cdn.jsdelivr.net/gh/tobywsharotslicha/toby-brand-assets@stable/brand/images/hero/pianoflute.png");
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+/* =========================================================
+   DARK THEME
+========================================================= */
+:root[data-theme="dark"],
+html[data-theme="dark"],
+html.dark {
+
+  body {
+    background-image: url("https://cdn.jsdelivr.net/gh/tobywsharotslicha/toby-brand-assets@stable/brand/images/background/red.png");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    color: var(--לבן);
+  }
+
+  /* Logo */
+  .brand-logo img {
+    content: url("https://cdn.jsdelivr.net/gh/tobywsharotslicha/toby-brand-assets@stable/brand/logo/logonoreka.png");
+  }
+
+  /* Headline */
+  h1, h2, .headline {
+    color: var(--זהב);
+    text-shadow: var(--gold-glow-text);
+  }
+
+  /* Sub headline */
+  h3, .sub-headline {
+    color: var(--בורדו-בהיר);
+    text-shadow: var(--wine-glow-text);
+  }
+
+  /* Cards / components */
+  .card, .panel, .box {
+    background: rgba(15, 10, 10, 0.88);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(230, 182, 92, 0.5);
+    box-shadow: var(--gold-glow-border);
+  }
+
+  /* Hero / dashboard top */
+  .dashboard-hero, .page-hero {
+    background-image: url("https://cdn.jsdelivr.net/gh/tobywsharotslicha/toby-brand-assets@stable/brand/images/hero/pianoflute.png");
+    background-size: cover;
+    background-position: center;
+  }
+}
+
