@@ -52,41 +52,42 @@
   --font-headline-he: "Frank Ruhl Libre", serif;
   --font-body: "Assistant", sans-serif;
 
-  /* Optional: allow components to reference brand */
-  --primary: var(--gold-main);
-  --primary-contrast: var(--black);
-  --accent: var(--wine-main);
-  --accent-contrast: #ffffff;
-
-  /* =================================================
-     Default brand ASSETS (paths match your repo)
-     ================================================= */
+  /* -------------------------------------------------
+     Brand ASSETS (relative to themes/ folder in repo)
+     (themes/.. -> brand/..)
+     ------------------------------------------------- */
   --toby-bg-image: url("../brand/images/background/lightgold.png");
   --toby-hero-image: url("../brand/images/hero/pianoflute.png");
-  --toby-logo-image: url("../brand/logo/logonoreka.png"); /* ✅ נתיב נכון */
+  --toby-logo-image: url("../brand/images/logo/logonoreka.png");
 
-  /* Extra semantic tokens for your “default rules” */
-  --toby-title: 350 70% 28%;     /* light: bordeaux */
-  --toby-subtitle: 39 76% 63%;   /* light: gold */
-  --toby-text: 0 0% 10%;         /* light: near black */
-  --toby-frame: 39 76% 63%;      /* gold frame */
+  /* -------------------------------------------------
+     Glitter / semantic defaults (light as base)
+     ------------------------------------------------- */
+  --toby-title: 350 70% 28%;   /* bordeaux */
+  --toby-subtitle: 39 76% 63%; /* gold */
+  --toby-text: 0 0% 10%;       /* near black */
+  --toby-frame: 39 76% 63%;    /* gold */
+
+  /* Shared glow effects */
+  --gold-glow-text: 0 0 6px rgba(230, 182, 92, 0.45);
+  --gold-glow-border: 0 0 0 1px rgba(230, 182, 92, 0.6),
+                      0 0 14px rgba(230, 182, 92, 0.35);
+
+  --wine-glow-text: 0 0 6px rgba(192, 72, 48, 0.45);
 }
 
 /* =========================================================
    LIGHT THEME (Toby “Day Stage”)
-   Creamy ivory background + warm gold accents + readable text
 ========================================================= */
 :root,
 :root[data-theme="light"],
 html[data-theme="light"] {
   color-scheme: light;
 
-  /* Basic page (non-HSL helpers) */
-  --bg: #fbf7ef;          /* ivory */
-  --surface: #ffffff;     /* cards */
-  --text: #141210;        /* near-black */
-  --muted: #5f5a55;       /* warm gray */
-  --border: rgba(20, 18, 16, 0.12);
+  /* Basic helpers */
+  --bg: #fbf7ef;      /* ivory */
+  --surface: #ffffff; /* cards */
+  --text: #141210;    /* near-black */
 
   /* shadcn/tailwind HSL tokens */
   --background: 45 60% 96%;
@@ -117,29 +118,26 @@ html[data-theme="light"] {
   --input: 18 18% 12% / 0.16;
   --ring: 39 76% 63%;
 
-  /* Extra tokens */
-  --shadow-soft: 0 10px 30px rgba(20, 18, 16, 0.10);
-  --glow-gold: 0 0 0 1px rgba(230, 182, 92, 0.25),
-               0 10px 40px rgba(230, 182, 92, 0.14);
-
-  /* Hebrew semantic aliases for designers */
+  /* Hebrew semantic aliases */
   --רקע: var(--bg);
   --כרטיס: var(--surface);
   --טקסט: var(--text);
   --הדגשה-זהב: var(--זהב);
   --הדגשה-בורדו: var(--בורדו);
 
-  /* Your requested defaults (Light) */
+  /* Requested defaults (Light) */
   --toby-bg-image: url("../brand/images/background/lightgold.png");
-  --toby-title: 350 70% 28%;     /* bordeaux glitter title */
-  --toby-subtitle: 39 76% 63%;   /* gold glitter subtitle */
-  --toby-text: 0 0% 10%;         /* black text */
-  --toby-frame: 39 76% 63%;      /* gold frame */
+  --toby-hero-image: url("../brand/images/hero/pianoflute.png");
+  --toby-logo-image: url("../brand/images/logo/logonoreka.png");
+
+  --toby-title: 350 70% 28%;   /* bordeaux glitter title */
+  --toby-subtitle: 39 76% 63%; /* gold glitter subtitle */
+  --toby-text: 0 0% 10%;       /* black text */
+  --toby-frame: 39 76% 63%;    /* gold frame */
 }
 
 /* =========================================================
    DARK THEME (Toby “Night Stage”)
-   Deep black + wine + gold highlights
 ========================================================= */
 :root[data-theme="dark"],
 html[data-theme="dark"],
@@ -149,8 +147,6 @@ html.dark {
   --bg: #0b0b0b;
   --surface: #111111;
   --text: #f2f0ea;
-  --muted: #b7b0a6;
-  --border: rgba(244, 217, 138, 0.14);
 
   --background: 0 0% 4%;
   --foreground: 45 30% 92%;
@@ -180,10 +176,6 @@ html.dark {
   --input: 45 30% 92% / 0.12;
   --ring: 39 76% 63%;
 
-  --shadow-soft: 0 14px 60px rgba(0, 0, 0, 0.55);
-  --glow-gold: 0 0 0 1px rgba(230, 182, 92, 0.18),
-               0 12px 60px rgba(230, 182, 92, 0.10);
-
   /* Hebrew semantic aliases */
   --רקע: var(--bg);
   --כרטיס: var(--surface);
@@ -191,8 +183,11 @@ html.dark {
   --הדגשה-זהב: var(--זהב);
   --הדגשה-בורדו: var(--בורדו-בהיר);
 
-  /* Your requested defaults (Dark) */
+  /* Requested defaults (Dark) */
   --toby-bg-image: url("../brand/images/background/red.png");
+  --toby-hero-image: url("../brand/images/hero/pianoflute.png");
+  --toby-logo-image: url("../brand/images/logo/logonoreka.png");
+
   --toby-title: 39 76% 63%;      /* gold glitter title */
   --toby-subtitle: 350 55% 48%;  /* bright bordeaux glitter subtitle */
   --toby-text: 0 0% 98%;         /* white text */
@@ -200,29 +195,28 @@ html.dark {
 }
 
 /* -------------------------
-   Optional global typography defaults
+   Global typography defaults
 ------------------------- */
 html, body {
   font-family: var(--font-body);
+  min-height: 100%;
 }
 
 /* =========================================================
    Global default background images
 ========================================================= */
-html, body {
-  min-height: 100%;
-}
-
 body {
   background-color: hsl(var(--background));
   background-image: var(--toby-bg-image);
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   background-attachment: fixed;
+  color: hsl(var(--toby-text));
 }
 
 /* =========================================================
-   Glitter utilities (titles / frames)
+   Utilities (titles / frames / surfaces)
 ========================================================= */
 
 /* Title glitter */
@@ -252,6 +246,7 @@ body {
   box-shadow:
     0 0 0 1px hsl(var(--toby-frame) / 0.18),
     0 0 22px hsl(var(--toby-frame) / 0.12);
+  border-radius: var(--radius-lg);
 }
 
 /* Filled components surface */
@@ -267,4 +262,5 @@ body {
   background-image: var(--toby-hero-image);
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
 }
