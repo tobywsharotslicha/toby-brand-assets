@@ -1,66 +1,43 @@
 /* themes/fonts.css
-   TOBY MUSIC – Typography System (v1.0)
-   EN Headlines: Playfair Display (400/600/700)
-   HE Headlines: Frank Ruhl Libre (400/700)
-   Body (HE+EN): Assistant (400/500/600/700)
-
-   Notes:
-   - This file is Google-Fonts based for fastest setup.
-   - If Google Fonts is blocked אצלך: תגידי לי, ואתן לך גרסת self-host (@font-face) לפי שמות קבצים שתעלי לריפו.
+   TOBY MUSIC – Typography System
+   EN Headlines: Playfair Display
+   HE Headlines: Frank Ruhl Libre
+   Body (HE+EN): Assistant
 */
 
-/* ✅ Load fonts (recommended weights per your guide) */
+/* ✅ Easy mode (free): Google Fonts
+   אם זה חסום אצלך בנטפרי — עדיין לא “שובר”, רק נופל ל־fallback.
+   כשתרצי: נעבור ל-self-host עם @font-face לקבצי woff2 בתוך הריפו.
+*/
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Frank+Ruhl+Libre:wght@400;700&family=Assistant:wght@400;500;600;700&display=swap");
 
-/* ✅ Global font tokens */
 :root {
-  /* Body must always be Assistant */
+  --font-headline-en: "Playfair Display", ui-serif, Georgia, "Times New Roman", serif;
+  --font-headline-he: "Frank Ruhl Libre", ui-serif, Georgia, "Times New Roman", serif;
   --font-body: "Assistant", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, "Noto Sans", "Helvetica Neue", sans-serif;
 
-  /* Display fonts (language-specific) */
-  --font-display-en: "Playfair Display", ui-serif, Georgia, "Times New Roman", serif;
-  --font-display-he: "Frank Ruhl Libre", ui-serif, Georgia, "Times New Roman", serif;
+  /* Default (site is usually he/rtl) */
+  --font-display: var(--font-headline-he);
 
-  /* Default display (site is usually he/rtl אצלך) */
-  --font-display: var(--font-display-he);
-
-  /* Compatibility tokens (shadcn/tailwind style) */
+  /* Compatibility */
   --font-sans: var(--font-body);
 }
 
-/* ✅ Auto-switch display font by lang attribute (most accurate rule) */
-:lang(en) { --font-display: var(--font-display-en); }
-:lang(he) { --font-display: var(--font-display-he); }
+/* Auto-select display font by language */
+:lang(en) { --font-display: var(--font-headline-en); }
+:lang(he) { --font-display: var(--font-headline-he); }
 
-/* ✅ Fallback switch by direction (helps when lang is missing) */
-[dir="ltr"] { --font-display: var(--font-display-en); }
-[dir="rtl"] { --font-display: var(--font-display-he); }
+/* Fallback when lang missing */
+[dir="ltr"] { --font-display: var(--font-headline-en); }
+[dir="rtl"] { --font-display: var(--font-headline-he); }
 
-/* ✅ Apply rules */
-body {
-  font-family: var(--font-body);
-  font-weight: 400;
-  text-rendering: optimizeLegibility;
-}
+/* Apply rules */
+html, body { font-family: var(--font-body); }
 
-/* Headlines: display font only */
 h1, h2, h3, h4, .font-display {
   font-family: var(--font-display);
   font-feature-settings: "kern" 1, "liga" 1;
 }
 
-/* Helpers (useful for mixed pages) */
-.font-body { font-family: var(--font-body); }
-.font-display-en { font-family: var(--font-display-en); }
-.font-display-he { font-family: var(--font-display-he); }
-
-/* Buttons: your guide says 500 weight */
-button, .btn {
-  font-family: var(--font-body);
-  font-weight: 500;
-}
-
-/* Code blocks */
-code, pre, kbd, samp {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-}
+/* Buttons: 500 per guide */
+button, .btn { font-family: var(--font-body); font-weight: 500; }
