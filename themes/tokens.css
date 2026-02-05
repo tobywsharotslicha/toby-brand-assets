@@ -1,103 +1,20 @@
 /* themes/tokens.css
-   Toby Brand Tokens (shadcn-style: hsl(var(--token)))
-   Light + Dark are defined via :root and .dark
+   Toby Brand entrypoint (single source of truth)
+   - Loads the full theme from toby.css
+   - Ensures shadcn base token --radius exists (6px per brand guide)
 */
 
-:root {
-  /* Brand raw colors */
-  --brand-gold: 39 76% 63%;
-  --brand-red: 0 84% 45%;
-  --brand-black: 0 0% 4%;
-  --brand-white: 0 0% 98%;
+@import "./toby.css";
 
-  /* ---- LIGHT (default) ---- */
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
+/* shadcn expects --radius */
+:root { --radius: 6px; }
 
-  --card: 0 0% 100%;
-  --card-foreground: 222.2 84% 4.9%;
-
-  --popover: 0 0% 100%;
-  --popover-foreground: 222.2 84% 4.9%;
-
-  --primary: var(--brand-gold);
-  --primary-foreground: 222.2 84% 4.9%;
-
-  --secondary: 210 40% 96.1%;
-  --secondary-foreground: 222.2 47.4% 11.2%;
-
-  --muted: 210 40% 96.1%;
-  --muted-foreground: 215.4 16.3% 46.9%;
-
-  --accent: 210 40% 96.1%;
-  --accent-foreground: 222.2 47.4% 11.2%;
-
-  --destructive: var(--brand-red);
-  --destructive-foreground: 0 0% 98%;
-
-  --border: 214.3 31.8% 91.4%;
-  --input: 214.3 31.8% 91.4%;
-  --ring: var(--brand-gold);
-
-  --radius: 0.9rem;
-
-  /* Optional chart colors (if you ever use them) */
-  --chart-1: var(--brand-gold);
-  --chart-2: 0 0% 15%;
-  --chart-3: var(--brand-red);
-  --chart-4: 210 40% 70%;
-  --chart-5: 160 60% 40%;
-
-  /* Font tokens (fonts.css can override the actual families) */
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, "Noto Sans", "Helvetica Neue", sans-serif;
-  --font-display: var(--font-sans);
-}
-
-/* Support different dark selectors (some apps toggle .dark on html/body) */
-.dark,
+:root[data-theme="light"],
+html[data-theme="light"],
+:root[data-theme="dark"],
+html[data-theme="dark"],
 html.dark,
 body.dark,
 [data-theme="dark"] {
-  --background: var(--brand-black);
-  --foreground: var(--brand-white);
-
-  --card: 0 0% 10%;
-  --card-foreground: var(--brand-white);
-
-  --popover: 0 0% 10%;
-  --popover-foreground: var(--brand-white);
-
-  --primary: var(--brand-gold);
-  --primary-foreground: 0 0% 6%;
-
-  --secondary: 0 0% 12%;
-  --secondary-foreground: var(--brand-white);
-
-  --muted: 0 0% 12%;
-  --muted-foreground: 40 12% 72%;
-
-  --accent: 0 0% 12%;
-  --accent-foreground: var(--brand-white);
-
-  --destructive: var(--brand-red);
-  --destructive-foreground: var(--brand-white);
-
-  --border: 45 30% 22%;
-  --input: 45 30% 22%;
-  --ring: var(--brand-gold);
-
-  --chart-1: var(--brand-gold);
-  --chart-2: 0 0% 85%;
-  --chart-3: var(--brand-red);
-  --chart-4: 210 40% 70%;
-  --chart-5: 160 60% 55%;
-}
-
-/* (לא חובה) קצת ברירות מחדל נעימות אם אתר לא קובע אותן */
-html {
-  color-scheme: light dark;
-}
-
-body {
-  font-family: var(--font-sans);
+  --radius: 6px;
 }
